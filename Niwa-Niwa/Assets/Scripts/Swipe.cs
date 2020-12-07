@@ -7,11 +7,13 @@ public class Swipe : MonoBehaviour
     public bool tap, swipeLeft, swipeRight, swipeUp, swipeDown;
     public bool isDragging = false;
     public Vector2 startTouch, swipeDelta;
+    public float touchStart, touchDuration;
+    
 
     private void Update()
     {
         tap = swipeLeft = swipeRight = swipeUp = swipeDown = false;
-
+        
         //STANDALONE INPUTS
         
         if (Input.GetMouseButtonDown(0))
@@ -19,13 +21,15 @@ public class Swipe : MonoBehaviour
             tap = true;
             isDragging = true; 
             startTouch = Input.mousePosition;
+            touchStart = Time.time;
+            touchDuration = 0;
         }
         else if (Input.GetMouseButtonUp(0))
         {
             isDragging = false;
             Reset();
         }
-        
+
         //MOBILE INPUTS
 
         if (Input.touches.Length > 0)
@@ -35,6 +39,8 @@ public class Swipe : MonoBehaviour
                 tap = true;
                 isDragging = true;
                 startTouch = Input.touches[0].position;
+                touchStart = Time.time;
+                touchDuration = 0;
             }
             else if (Input.touches[0].phase == TouchPhase.Ended || Input.touches[0].phase == TouchPhase.Canceled)
             {
@@ -65,7 +71,6 @@ public class Swipe : MonoBehaviour
             
             if (Mathf.Abs(x) > Mathf.Abs(y))
             {
-                //LEFT OR RIGHT
                 if (x < 0)
                     swipeLeft = true;
                 else
@@ -73,12 +78,12 @@ public class Swipe : MonoBehaviour
             }
             else
             {
-                //UP OR DOWN
                 if (y < 0)
                     swipeDown = true;
                 else
                     swipeUp = true;
             }
+            
             Reset();
         }
     }
@@ -87,5 +92,6 @@ public class Swipe : MonoBehaviour
     {
         startTouch = swipeDelta = Vector2.zero;
         isDragging = false;
+        touchDuration = Time.time - touchStart;
     }
 }

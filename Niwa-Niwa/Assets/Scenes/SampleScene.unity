@@ -7409,7 +7409,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 80
   orthographic: 0
   orthographic size: 14
   m_Depth: -1
@@ -11781,6 +11781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5cb2e2ff6fb3634d8c7a7cd762900dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swipeOutput: {fileID: 1526504104}
   tap: 0
   swipeLeft: 0
   swipeRight: 0
@@ -11789,6 +11790,8 @@ MonoBehaviour:
   isDragging: 0
   startTouch: {x: 0, y: 0}
   swipeDelta: {x: 0, y: 0}
+  touchStart: 0
+  touchDuration: 0.35333335
 --- !u!114 &1526504104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11803,7 +11806,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swipeControls: {fileID: 1526504103}
   player: {fileID: 1070708858}
-  isCharged: 0
+  inTransit: 0
   stopMovment:
     serializedVersion: 2
     m_Bits: 256

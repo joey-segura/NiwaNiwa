@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 public class Swipe : MonoBehaviour
 {
+    public SwipeHandler swipeOutput;
     public bool tap, swipeLeft, swipeRight, swipeUp, swipeDown;
     public bool isDragging = false;
     public Vector2 startTouch, swipeDelta;
@@ -61,7 +65,9 @@ public class Swipe : MonoBehaviour
         }
         
         //DEADZONE CROSS CHECK
-
+        
+        Vector3 dir = Vector3.zero;
+        
         if (swipeDelta.magnitude > 40)
         {
             //WHICH DIRECTION IS SWIPE
@@ -69,22 +75,38 @@ public class Swipe : MonoBehaviour
             float x = swipeDelta.x;
             float y = swipeDelta.y;
             
+            
             if (Mathf.Abs(x) > Mathf.Abs(y))
             {
                 if (x < 0)
+                {
                     swipeLeft = true;
+                    dir = Vector3.left;
+                }
                 else
+                {
                     swipeRight = true;
+                    dir = Vector3.right;
+                }
             }
             else
             {
                 if (y < 0)
+                {
                     swipeDown = true;
+                    dir = Vector3.back;
+                }
                 else
+                {
                     swipeUp = true;
+                    dir = Vector3.forward;
+                }
             }
-            
-            Reset();
+
+            if (!swipeOutput.inTransit)
+            {
+                swipeOutput.ReceiveInput(dir, swipeLeft, swipeRight, swipeUp, swipeDown);
+            }
         }
     }
 

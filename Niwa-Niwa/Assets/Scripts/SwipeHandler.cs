@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class SwipeHandler : MonoBehaviour
 {
-    public Swipe swipeControls;
     public Transform player;
     public bool inTransit = false, isCharged = false;
     public float distance, rayDistance, moveSpeed;
@@ -17,10 +16,19 @@ public class SwipeHandler : MonoBehaviour
     [SerializeField]
     private LayerMask stopMovment;
 
-    public void ReceiveInput(Vector3 direction, bool left, bool right, bool forward, bool back)
+    public void ReceiveInput(Vector3 direction, bool left, bool right, bool forward, bool back, float duration)
     {
         Vector3 blockDir = Vector3.zero;
 
+        if (duration > 1)
+        {
+            isCharged = true;
+        }
+        else
+        {
+            isCharged = false;
+        }
+        
         if (isCharged)
         {
             distance = 2;

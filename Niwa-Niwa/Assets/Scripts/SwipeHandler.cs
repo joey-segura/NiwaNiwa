@@ -7,27 +7,38 @@ public class SwipeHandler : MonoBehaviour
 {
     public Swipe swipeControls;
     public Transform player;
-    public bool inTransit = false;
+    public bool inTransit = false, isCharged = false;
+    public float distance, rayDistance, moveSpeed;
     
     private bool isBlockedLeft = false, isBlockedRight = false, isBlockedForward = false, isBlockedBack = false;
     private Vector3 desiredPosition;
-    private float CHARGETIME = 2;
-    private float RAYDISTANCE = 1.5f;
+    private float CHARGETIME = 1.5f;
     
-
     [SerializeField]
     private LayerMask stopMovment;
 
     public void ReceiveInput(Vector3 direction, bool left, bool right, bool forward, bool back)
     {
         Vector3 blockDir = Vector3.zero;
-        
+
+        if (isCharged)
+        {
+            distance = 2;
+            rayDistance = 3;
+            moveSpeed = 30;
+        }
+        else
+        {
+            distance = 1;
+            rayDistance = 1.5f;
+            moveSpeed = 10;
+        }
+
         if (left)
         {
             Ray rayLeft = new Ray(player.transform.position, Vector3.left);
-            Debug.DrawRay(player.transform.position, Vector3.left * 3, Color.green);
             RaycastHit hitLeft;
-            if (Physics.Raycast(rayLeft, out hitLeft, RAYDISTANCE, stopMovment))
+            if (Physics.Raycast(rayLeft, out hitLeft, rayDistance, stopMovment))
             {
                 isBlockedLeft = true;
                 blockDir = Vector3.left;
@@ -41,9 +52,8 @@ public class SwipeHandler : MonoBehaviour
         if (right)
         {
             Ray rayRight = new Ray(player.transform.position, Vector3.right);
-            Debug.DrawRay(player.transform.position, Vector3.right * 3, Color.green);
             RaycastHit hitRight;
-            if (Physics.Raycast(rayRight, out hitRight, RAYDISTANCE, stopMovment))
+            if (Physics.Raycast(rayRight, out hitRight, rayDistance, stopMovment))
             {
                 isBlockedRight = true;
                 blockDir = Vector3.right;
@@ -57,9 +67,8 @@ public class SwipeHandler : MonoBehaviour
         if (forward)
         {
             Ray rayForward = new Ray(player.transform.position, Vector3.forward);
-            Debug.DrawRay(player.transform.position, Vector3.forward * 3, Color.green);
             RaycastHit hitForward;
-            if (Physics.Raycast(rayForward, out hitForward, RAYDISTANCE, stopMovment))
+            if (Physics.Raycast(rayForward, out hitForward, rayDistance, stopMovment))
             {
                 isBlockedForward = true;
                 blockDir = Vector3.forward;
@@ -73,9 +82,8 @@ public class SwipeHandler : MonoBehaviour
         if (back)
         {
             Ray rayBack = new Ray(player.transform.position, Vector3.back);
-            Debug.DrawRay(player.transform.position, Vector3.back * 3, Color.green);
             RaycastHit hitBack;
-            if (Physics.Raycast(rayBack, out hitBack, RAYDISTANCE))
+            if (Physics.Raycast(rayBack, out hitBack, rayDistance))
             {
                 isBlockedBack = true;
                 blockDir = Vector3.back;
@@ -85,11 +93,10 @@ public class SwipeHandler : MonoBehaviour
                 isBlockedBack = false;
             }
         }
-
         if (direction != blockDir)
         {
             inTransit = true;
-            StartCoroutine(MovePlayer(direction, 1));
+            StartCoroutine(MovePlayer(direction, distance));
         }
     }
     
@@ -101,7 +108,7 @@ public class SwipeHandler : MonoBehaviour
         
         while (inTransit)
         {
-            player.transform.position = Vector3.MoveTowards(player.transform.position, nextPosition, 10f * Time.deltaTime);
+            player.transform.position = Vector3.MoveTowards(player.transform.position, nextPosition, moveSpeed * Time.deltaTime);
             if (player.transform.position == nextPosition)
             {
                 inTransit = false;

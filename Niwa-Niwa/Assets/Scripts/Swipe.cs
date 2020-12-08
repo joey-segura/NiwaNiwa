@@ -1,22 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Numerics;
-using UnityEngine;
+﻿using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
 public class Swipe : MonoBehaviour
 {
     public SwipeHandler swipeOutput;
-    public bool tap, swipeLeft, swipeRight, swipeUp, swipeDown;
+    public bool tap, swipeLeft, swipeRight, swipeForward, swipeBack;
     public bool isDragging = false;
     public Vector2 startTouch, swipeDelta;
     public float touchStart, touchDuration;
     
-
     private void Update()
     {
-        tap = swipeLeft = swipeRight = swipeUp = swipeDown = false;
+        tap = swipeLeft = swipeRight = swipeForward = swipeBack = false;
         
         //STANDALONE INPUTS
         
@@ -64,17 +60,14 @@ public class Swipe : MonoBehaviour
                 swipeDelta = (Vector2) Input.mousePosition - startTouch;
         }
         
-        //DEADZONE CROSS CHECK
+        //DEAD-ZONE CROSS CHECK + SWIPE DIRECTION
         
         Vector3 dir = Vector3.zero;
         
         if (swipeDelta.magnitude > 40)
         {
-            //WHICH DIRECTION IS SWIPE
-
             float x = swipeDelta.x;
             float y = swipeDelta.y;
-            
             
             if (Mathf.Abs(x) > Mathf.Abs(y))
             {
@@ -93,19 +86,18 @@ public class Swipe : MonoBehaviour
             {
                 if (y < 0)
                 {
-                    swipeDown = true;
+                    swipeBack = true;
                     dir = Vector3.back;
                 }
                 else
                 {
-                    swipeUp = true;
+                    swipeForward = true;
                     dir = Vector3.forward;
                 }
             }
-
             if (!swipeOutput.inTransit)
             {
-                swipeOutput.ReceiveInput(dir, swipeLeft, swipeRight, swipeUp, swipeDown);
+                swipeOutput.ReceiveInput(dir, swipeLeft, swipeRight, swipeForward, swipeBack);
             }
         }
     }

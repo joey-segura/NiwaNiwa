@@ -1,6 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using System.Net.NetworkInformation;
 using UnityEngine;
 
 public class SwipeHandler : MonoBehaviour
@@ -11,10 +9,7 @@ public class SwipeHandler : MonoBehaviour
     
     private bool isBlockedLeft = false, isBlockedRight = false, isBlockedForward = false, isBlockedBack = false;
     private Vector3 desiredPosition;
-    private float CHARGETIME = 1.5f;
-    
-    [SerializeField]
-    private LayerMask stopMovment;
+    private float CHARGETIME = 0.95f;
 
     public void ReceiveInput(Vector3 direction, bool left, bool right, bool forward, bool back, float duration)
     {
@@ -46,7 +41,7 @@ public class SwipeHandler : MonoBehaviour
         {
             Ray rayLeft = new Ray(player.transform.position, Vector3.left);
             RaycastHit hitLeft;
-            if (Physics.Raycast(rayLeft, out hitLeft, rayDistance, stopMovment))
+            if (Physics.Raycast(rayLeft, out hitLeft, rayDistance))
             {
                 isBlockedLeft = true;
                 blockDir = Vector3.left;
@@ -61,7 +56,7 @@ public class SwipeHandler : MonoBehaviour
         {
             Ray rayRight = new Ray(player.transform.position, Vector3.right);
             RaycastHit hitRight;
-            if (Physics.Raycast(rayRight, out hitRight, rayDistance, stopMovment))
+            if (Physics.Raycast(rayRight, out hitRight, rayDistance))
             {
                 isBlockedRight = true;
                 blockDir = Vector3.right;
@@ -76,7 +71,7 @@ public class SwipeHandler : MonoBehaviour
         {
             Ray rayForward = new Ray(player.transform.position, Vector3.forward);
             RaycastHit hitForward;
-            if (Physics.Raycast(rayForward, out hitForward, rayDistance, stopMovment))
+            if (Physics.Raycast(rayForward, out hitForward, rayDistance))
             {
                 isBlockedForward = true;
                 blockDir = Vector3.forward;
@@ -113,10 +108,12 @@ public class SwipeHandler : MonoBehaviour
         float scaler = distance * 1.5f;
         Vector3 nextPosition = new Vector3(direction.x, direction.y, direction.z) * scaler;
         nextPosition += player.transform.position;
+        player.transform.rotation = Quaternion.LookRotation(nextPosition - player.transform.position);
         
         while (inTransit)
         {
             player.transform.position = Vector3.MoveTowards(player.transform.position, nextPosition, moveSpeed * Time.deltaTime);
+
             if (player.transform.position == nextPosition)
             {
                 inTransit = false;

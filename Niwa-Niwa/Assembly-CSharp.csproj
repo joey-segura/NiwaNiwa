@@ -59,8 +59,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\CameraController.cs" />
-     <Compile Include="Assets\Scripts\Grid.cs" />
+     <Compile Include="Assets\Scripts\GenerateGrid.cs" />
      <Compile Include="Assets\Scripts\Node.cs" />
+     <Compile Include="Assets\Scripts\PathFinding.cs" />
      <Compile Include="Assets\Scripts\Swipe.cs" />
      <Compile Include="Assets\Scripts\SwipeHandler.cs" />
  <Reference Include="Unity.Timeline.Editor">

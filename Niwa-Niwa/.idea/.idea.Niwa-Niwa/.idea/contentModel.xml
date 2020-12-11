@@ -8,6 +8,8 @@
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
           <e p="CameraController.cs" t="Include" />
+          <e p="Grid.cs" t="Include" />
+          <e p="Node.cs" t="Include" />
           <e p="Swipe.cs" t="Include" />
           <e p="SwipeHandler.cs" t="Include" />
         </e>

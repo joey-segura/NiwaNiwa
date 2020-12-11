@@ -97,8 +97,6 @@ public class Swipe : MonoBehaviour
             }
             if (!swipeOutput.inTransit)
             {
-                Debug.Log(touchStart);
-                Debug.Log(Time.time);
                 swipeOutput.ReceiveInput(dir, swipeLeft, swipeRight, swipeForward, swipeBack, Time.time - touchStart);
             }
         }

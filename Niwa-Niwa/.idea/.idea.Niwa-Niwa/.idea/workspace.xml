@@ -13,16 +13,21 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CameraController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Node.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SwipeHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Swipe.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Grid.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/SwipeManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Swipe.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SwipeHandler.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/CameraController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PathFinding.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Node.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Grid.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Swipe.cs" />
       </list>
     </option>
   </component>
@@ -61,6 +66,7 @@
       <workItem from="1607373101487" duration="3600000" />
       <workItem from="1607388990141" duration="2745000" />
       <workItem from="1607475715887" duration="5418000" />
+      <workItem from="1607654635648" duration="4120000" />
     </task>
     <servers />
   </component>

@@ -63,8 +63,10 @@
      <Compile Include="Assets\Scripts\Heap.cs" />
      <Compile Include="Assets\Scripts\Node.cs" />
      <Compile Include="Assets\Scripts\PathFinding.cs" />
+     <Compile Include="Assets\Scripts\PathRequestManager.cs" />
      <Compile Include="Assets\Scripts\Swipe.cs" />
      <Compile Include="Assets\Scripts\SwipeHandler.cs" />
+     <Compile Include="Assets\Scripts\Unit.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/otejp/Documents/GIT/NIWA-NIWA/unity3d-niwa-niwa/Niwa-Niwa/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>

@@ -12,8 +12,10 @@
           <e p="Heap.cs" t="Include" />
           <e p="Node.cs" t="Include" />
           <e p="PathFinding.cs" t="Include" />
+          <e p="PathRequestManager.cs" t="Include" />
           <e p="Swipe.cs" t="Include" />
           <e p="SwipeHandler.cs" t="Include" />
+          <e p="Unit.cs" t="Include" />
         </e>
       </e>
       <e p="Niwa-Niwa.sln" t="IncludeFlat" />

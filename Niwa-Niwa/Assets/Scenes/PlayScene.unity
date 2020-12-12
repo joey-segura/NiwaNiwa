@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 93074421}
   - component: {fileID: 93074420}
   - component: {fileID: 93074419}
+  - component: {fileID: 93074422}
   - component: {fileID: 93074418}
   m_Layer: 0
   m_Name: Enemy
@@ -308,6 +309,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &93074422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93074417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49ffc5a1f37b71d41bb8736bb0ccc28c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1070708858}
 --- !u!1 &93289687
 GameObject:
   m_ObjectHideFlags: 0
@@ -1123,6 +1137,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1803266629}
   - component: {fileID: 1803266628}
+  - component: {fileID: 1803266631}
   - component: {fileID: 1803266630}
   m_Layer: 0
   m_Name: A*
@@ -1143,8 +1158,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0b87cf3c0d97fe42a43f0010d9dc9fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1070708858}
-  stopMovement:
+  displayGridGizmos: 0
+  unwalkableMask:
     serializedVersion: 2
     m_Bits: 256
   gridWorldSize: {x: 10.5, y: 22.5}
@@ -1172,11 +1187,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1803266627}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b39b0638099f964880bd6eae00965e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1803266631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803266627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e04a871b0ac66e44af58fbbb0750706, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seeker: {fileID: 93074421}
-  target: {fileID: 1070708858}
 --- !u!1 &1806748850
 GameObject:
   m_ObjectHideFlags: 0

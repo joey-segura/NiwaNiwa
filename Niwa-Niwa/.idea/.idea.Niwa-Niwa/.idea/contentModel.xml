@@ -9,6 +9,7 @@
         <e p="Scripts" t="Include">
           <e p="CameraController.cs" t="Include" />
           <e p="GenerateGrid.cs" t="Include" />
+          <e p="Heap.cs" t="Include" />
           <e p="Node.cs" t="Include" />
           <e p="PathFinding.cs" t="Include" />
           <e p="Swipe.cs" t="Include" />

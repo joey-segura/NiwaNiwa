@@ -21,6 +21,11 @@ public class GenerateGrid : MonoBehaviour
         CreateGrid();
     }
 
+    public int MaxSize
+    {
+        get { return gridSizeX * gridSizeY; }
+    }
+
     void CreateGrid()
     {
         grid = new Node[gridSizeX, gridSizeY];
@@ -78,7 +83,9 @@ public class GenerateGrid : MonoBehaviour
     }
 
     public List<Node> path;
+    
     void OnDrawGizmos() {
+        
         Gizmos.DrawWireCube(transform.position,new Vector3(gridWorldSize.x,1,gridWorldSize.y));
 
         if (grid != null) {
@@ -87,7 +94,7 @@ public class GenerateGrid : MonoBehaviour
                 if (path != null)
                     if (path.Contains(n))
                         Gizmos.color = Color.black;
-                Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter-.1f));
+                Gizmos.DrawWireCube(n.worldPosition, Vector3.one * (nodeDiameter-.5f));
             }
         }
     }

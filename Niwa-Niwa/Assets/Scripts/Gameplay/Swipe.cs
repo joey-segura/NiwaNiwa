@@ -1,6 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
+
+using UnityEngine.UI;
 
 public class Swipe : MonoBehaviour
 {
@@ -10,6 +13,9 @@ public class Swipe : MonoBehaviour
     public Vector2 startTouch, swipeDelta;
     public float touchStart, touchDuration;
     
+    public RectTransform fx_holder;
+    public Image chargerImg;
+
     private void Update()
     {
         tap = swipeLeft = swipeRight = swipeForward = swipeBack = false;
@@ -100,6 +106,11 @@ public class Swipe : MonoBehaviour
                 swipeOutput.ReceiveInput(dir, swipeLeft, swipeRight, swipeForward, swipeBack, Time.time - touchStart);
             }
         }
+
+        if (Input.GetMouseButton(0) || Input.touchCount == 1)
+        {
+            chargerImg.fillAmount += Time.deltaTime;
+        }
     }
 
     private void Reset()
@@ -107,5 +118,6 @@ public class Swipe : MonoBehaviour
         startTouch = swipeDelta = Vector2.zero;
         isDragging = false;
         touchDuration = Time.time - touchStart;
+        chargerImg.fillAmount = 0f;
     }
 }

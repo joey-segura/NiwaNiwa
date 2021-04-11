@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+
 public class SwipeHandler : MonoBehaviour
 {
     public Transform player;
     public bool inTransit = false, isCharged = false;
     public float distance, rayDistance, moveSpeed;
-    
+
     private bool isBlockedLeft = false, isBlockedRight = false, isBlockedForward = false, isBlockedBack = false;
     private Vector3 desiredPosition;
     private float CHARGETIME = 0.95f;

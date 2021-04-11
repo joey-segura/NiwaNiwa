@@ -87,7 +87,7 @@ public class GenerateGrid : MonoBehaviour
                 if (path != null)
                     if (path.Contains(n))
                         Gizmos.color = Color.black;
-                Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter-.1f));
+                Gizmos.DrawWireCube(n.worldPosition, Vector3.one * (nodeDiameter-.1f));
             }
         }
     }

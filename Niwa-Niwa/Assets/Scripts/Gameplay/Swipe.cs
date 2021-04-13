@@ -13,8 +13,8 @@ public class Swipe : MonoBehaviour
     public Vector2 startTouch, swipeDelta;
     public float touchStart, touchDuration;
     
-    public RectTransform fx_holder;
     public Image chargerImg;
+    public float imgAlpha;
 
     private void Update()
     {
@@ -110,6 +110,8 @@ public class Swipe : MonoBehaviour
         if (Input.GetMouseButton(0) || Input.touchCount == 1)
         {
             chargerImg.fillAmount += Time.deltaTime;
+            imgAlpha += Time.deltaTime;
+            chargerImg.color = new Color(1, 1, 0, imgAlpha);
         }
     }
 
@@ -119,5 +121,6 @@ public class Swipe : MonoBehaviour
         isDragging = false;
         touchDuration = Time.time - touchStart;
         chargerImg.fillAmount = 0f;
+        imgAlpha = 0f;
     }
 }
